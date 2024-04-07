@@ -1,6 +1,6 @@
-import React, {useRef, useState, useCallback, useMemo} from 'react';
-import {openFileDialog, getListFiles, getAcceptTypeString} from './utils';
-import {getErrorValidation} from './validation';
+import React, { useRef, useState, useCallback, useMemo, DragEvent } from 'react';
+import { openFileDialog, getListFiles, getAcceptTypeString } from './utils';
+import { getErrorValidation } from './validation';
 import {
     ImageType,
     ImageListType,
@@ -131,12 +131,12 @@ const ImageUploading: React.FC<ImageUploadingPropsType> = (
         [acceptType, allowNonImageType]
     );
 
-    const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDrag = (e: DragEvent) => {
         e.preventDefault();
         e.stopPropagation();
     };
 
-    const handleDragIn = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragIn = (e: DragEvent) => {
         e.preventDefault();
         e.stopPropagation();
         if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
@@ -144,13 +144,13 @@ const ImageUploading: React.FC<ImageUploadingPropsType> = (
         }
     };
 
-    const handleDragOut = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragOut = (e: DragEvent) => {
         e.preventDefault();
         e.stopPropagation();
         setIsDragging(false);
     };
 
-    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDrop = (e: DragEvent) => {
         e.preventDefault();
         e.stopPropagation();
         setIsDragging(false);
@@ -159,7 +159,7 @@ const ImageUploading: React.FC<ImageUploadingPropsType> = (
         }
     };
 
-    const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragStart = (e: DragEvent) => {
         e.preventDefault();
         e.stopPropagation();
         e.dataTransfer.clearData();
